@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サンプルページ</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <!-- Make sure you put this AFTER Leaflet's CSS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+
+<body>
+  <div id="map" style="height: 80vh;"></div>
+  <script>
+    const map = L.map('map', {
+      center: [36.5, 137.1], // 初期位置
+      zoom: 5 // 初期ズーム
+    })
+
+    const backgroundLayer = L.tileLayer(
+      'https://tile.openstreetmap.org/{z}/{x}/{y}.png', // OSMのテンプレート
+      // 'https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', // 地理院タイルのテンプレート
+      {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>Contributors' // CopyRight
+      }
+    )
+
+    // レイヤー追加
+    map.addLayer(backgroundLayer)
+
+
+    // ピンを追加
+    const marker = L.marker([33, 129.5])
+    marker.bindPopup('testポップアップ')
+    map.addLayer(marker)
+
+    // 1行で書く
+    L.marker([33, 129]).bindPopup('test 2').addTo(map)
+  </script>
+
+
+</body>
+
+</html>
